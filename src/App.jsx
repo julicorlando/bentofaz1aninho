@@ -1,0 +1,284 @@
+import { motion } from "framer-motion";
+import "./index.css";
+
+const sunRays = [0, 18, 40, 62, 85, 110, 135, 158, 182, 205, 228, 250, 275, 298, 320, 340];
+
+export default function App() {
+  function enviarWhatsApp(e) {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+
+    const nome = form.get("nome");
+    const telefone = form.get("telefone");
+    const adultos = form.get("adultos");
+    const criancas = form.get("criancas");
+    const presenca = form.get("presenca");
+    const mensagem = form.get("mensagem");
+    const responsavel = form.get("responsavel");
+
+    const numero =
+      responsavel === "mamae" ? "5581992730122" : "5581989328045";
+
+    const texto = `Confirmação de presença 🎉
+
+Nome: ${nome}
+Telefone: ${telefone}
+Adultos: ${adultos}
+Crianças: ${criancas}
+Presença: ${presenca}
+Mensagem: ${mensagem || "-"}`;
+
+    window.open(
+      `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`,
+      "_blank"
+    );
+  }
+
+  return (
+    <div className="page">
+      <section className="hero">
+        <div className="decor-layer">
+          <motion.div
+            initial={{ scale: 0.98, opacity: 0.95 }}
+            animate={{ scale: [0.98, 1.02, 0.98] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="sun-wrapper"
+          >
+            <div className="sun-pink-bg" />
+
+            {sunRays.map((deg, i) => (
+              <motion.span
+                key={i}
+                className={`sun-ray ${i % 2 === 0 ? "long" : "short"}`}
+                style={{ transform: `rotate(${deg}deg) translateY(-70px)` }}
+                animate={{ opacity: [0.75, 1, 0.75] }}
+                transition={{ duration: 3, delay: i * 0.08, repeat: Infinity }}
+              />
+            ))}
+
+            <div className="sun-core">
+              <div className="sun-shine" />
+              <span className="eye eye-left" />
+              <span className="eye eye-right" />
+              <span className="blush blush-left" />
+              <span className="blush blush-right" />
+              <span className="smile" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            animate={{ x: [0, 12, 0], y: [0, -6, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="cloud cloud-top"
+          >
+            <div className="cloud-shape cloud-shape-a">
+              <span />
+              <span />
+              <span />
+            </div>
+          </motion.div>
+
+          <motion.div
+            animate={{ x: [0, -14, 0], y: [0, 6, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+            className="cloud cloud-mid"
+          >
+            <div className="cloud-shape cloud-shape-b">
+              <span />
+              <span />
+              <span />
+            </div>
+          </motion.div>
+
+          <div className="bottom-clouds">
+            <div className="bottom-cloud left" />
+            <div className="bottom-cloud center" />
+            <div className="bottom-cloud right" />
+          </div>
+        </div>
+
+        <div className="container hero-grid">
+          <div className="hero-left">
+            <div className="photo-block">
+              <div className="photo-glow" />
+              <img
+                src="/foto-crianca.jpeg"
+                alt="Foto do aniversariante"
+                className="birthday-photo"
+              />
+            </div>
+
+            <span className="badge">Confirmação de Presença</span>
+
+            <div className="title-block">
+              <p className="eyebrow">Nosso Raio de Sol</p>
+              <h1>Aniversário de 1 ano do José Bento</h1>
+              <p className="description">
+                Uma página de RSVP inspirada no convite: céu clarinho, nuvens
+                fofas, sol sorridente e arco-íris suave para celebrar esse dia
+                especial.
+              </p>
+            </div>
+
+            <div className="info-grid">
+              <div className="info-card">
+                <p>Data</p>
+                <strong>09/05/26</strong>
+              </div>
+              <div className="info-card">
+                <p>Horário</p>
+                <strong>16:00h</strong>
+              </div>
+              <div className="info-card">
+                <p>Local</p>
+                <strong>Espaço Rire</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-right">
+            <motion.div
+              initial={{ y: 28, opacity: 0, scale: 0.97 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="form-card"
+            >
+              <div className="form-header">
+                <div className="form-icon">☀️</div>
+                <div>
+                  <h2>Confirme sua presença</h2>
+                  <p>Preencha os dados abaixo para reservar seu lugar.</p>
+                </div>
+              </div>
+
+              <form className="rsvp-form" onSubmit={enviarWhatsApp}>
+                <div className="form-grid">
+                  <label>
+                    <span>Nome do convidado</span>
+                    <input name="nome" type="text" placeholder="Seu nome" required />
+                  </label>
+
+                  <label>
+                    <span>Telefone</span>
+                    <input
+                      name="telefone"
+                      type="tel"
+                      placeholder="(00) 00000-0000"
+                      required
+                    />
+                  </label>
+                </div>
+
+                {/* <div className="form-grid">
+                  <label>
+                    <span>Quantidade de adultos</span>
+                    <select name="adultos" defaultValue="1">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4+">4+</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    <span>Quantidade de crianças</span>
+                    <select name="criancas" defaultValue="0">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3+">3+</option>
+                    </select>
+                  </label>
+                </div>*/}
+
+                <label>
+                  <span>Você vai comparecer?</span>
+                  <div className="radio-grid">
+                    <label className="radio-card">
+                      <input type="radio" name="presenca" value="Sim" defaultChecked />
+                      <span>Sim, estarei lá ✨</span>
+                    </label>
+
+                    <label className="radio-card">
+                      <input type="radio" name="presenca" value="Não" />
+                      <span>Não poderei ir</span>
+                    </label>
+                  </div>
+                </label>
+
+                <label>
+                  <span>Enviar para</span>
+                  <select name="responsavel" defaultValue="mamae">
+                    <option value="mamae">Mamãe</option>
+                    <option value="papai">Papai</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Mensagem para a família</span>
+                  <textarea
+                    name="mensagem"
+                    rows="4"
+                    placeholder="Escreva uma mensagem carinhosa..."
+                  />
+                </label>
+
+                <button type="submit" className="primary-button">
+                  Confirmar via WhatsApp
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="details-section">
+        <div className="container">
+          <div className="details-card">
+            <div className="details-header">
+              <div>
+                <h3>Detalhes do evento</h3>
+                <p>Tudo com a estética leve e delicada do convite.</p>
+              </div>
+
+              <motion.div
+                className="rainbow"
+                animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
+                transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                🌈
+              </motion.div>
+            </div>
+
+            <div className="details-grid">
+              <div className="detail-box sky">
+                <p className="detail-title">Paleta</p>
+                <p>
+                  Azul bebê, branco, amarelo suave e tons pastel para manter o
+                  clima leve e acolhedor.
+                </p>
+              </div>
+
+              <div className="detail-box sun">
+                <p className="detail-title">Elementos</p>
+                <p>
+                  Sol sorridente, nuvens, céu claro e arco-íris delicado como
+                  base visual da página.
+                </p>
+              </div>
+
+              <div className="detail-box rose">
+                <p className="detail-title">Uso ideal</p>
+                <p>
+                  Perfeita para enviar por link no WhatsApp ou junto com o
+                  convite digital.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
