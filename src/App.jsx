@@ -160,7 +160,14 @@ Mensagem: ${mensagem || "-"}`;
               </div>
               <div className="info-card">
                 <p>Local</p>
-                <strong>Espaço Rire</strong>
+                  <a
+                    href="https://maps.app.goo.gl/C2rrMiVwpUiv9B2y6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-local"
+                    >
+                    Espaço Rire
+                </a>
               </div>
             </div>
 

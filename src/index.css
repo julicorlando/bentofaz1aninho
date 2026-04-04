@@ -879,3 +879,16 @@ h1 {
     border-radius: 18px;
   }
 }
+
+.link-local {
+  color: #12679b;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px dashed rgba(18, 103, 155, 0.3);
+  transition: all 0.2s ease;
+}
+
+.link-local:hover {
+  color: #0e6a96;
+  border-bottom: 2px solid #0e6a96;
+}
