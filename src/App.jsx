@@ -298,6 +298,55 @@ Mensagem: ${mensagem || "-"}`;
           </div>
         </div>
       </section>
+
+            <footer
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    padding: "26px",
+    fontSize: "14px",
+    color: "#94a3b8",
+    borderTop: "1px solid rgba(255,255,255,0.05)",
+    marginTop: "40px",
+    flexWrap: "wrap",
+  }}
+>
+  <span>Desenvolvido por</span>
+
+  <a
+    href="https://axionwebdigital.com.br"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      textDecoration: "none",
+    }}
+  >
+    <img
+      src="/assets/img/axion-logo.png"
+      alt="Axion Web Digital"
+      style={{
+        height: "34px",
+        opacity: 0.85,
+        transition: "0.3s",
+        filter: "drop-shadow(0 0 8px rgba(56,189,248,0.2))",
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.opacity = "1";
+        e.target.style.transform = "scale(1.08)";
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.opacity = "0.85";
+        e.target.style.transform = "scale(1)";
+      }}
+    />
+  </a>
+</footer>
+
     </div>
   );
 }
