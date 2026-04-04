@@ -143,9 +143,9 @@ Mensagem: ${mensagem || "-"}`;
               <p className="eyebrow">Nosso Raio de Sol</p>
               <h1>Aniversário de 1 ano do José Bento</h1>
               <p className="description">
-                Uma página de RSVP inspirada no convite: céu clarinho, nuvens
-                fofas, sol sorridente e arco-íris suave para celebrar esse dia
-                especial.
+                Sua presença é o nosso maior presente! Venha celebrar conosco 
+                esse dia tão especial, cheio de alegria, amor e muita diversão. 
+                Esperamos por você para tornar esse momento ainda mais inesquecível!
               </p>
             </div>
 
@@ -252,8 +252,8 @@ Mensagem: ${mensagem || "-"}`;
           <div className="details-card">
             <div className="details-header">
               <div>
-                <h3>Detalhes do evento</h3>
-                <p>Tudo com a estética leve e delicada do convite.</p>
+                <h3>Curiosidades</h3>
+                <p>Será que vocês sabiam dessas? </p>
               </div>
 
               <motion.div
@@ -267,26 +267,24 @@ Mensagem: ${mensagem || "-"}`;
 
             <div className="details-grid">
               <div className="detail-box sky">
-                <p className="detail-title">Paleta</p>
+                <p className="detail-title">Música</p>
                 <p>
-                  Azul bebê, branco, amarelo suave e tons pastel para manter o
-                  clima leve e acolhedor.
+                  Vocês sabiam que eu gosto do cantor João Gomes? Ele é o meu favorito! 
                 </p>
               </div>
 
               <div className="detail-box sun">
-                <p className="detail-title">Elementos</p>
+                <p className="detail-title">Comida</p>
                 <p>
-                  Sol sorridente, nuvens, céu claro e arco-íris delicado como
-                  base visual da página.
+                  Vocês sabiam que eu amo chupar laranja? É a minha fruta preferida!
                 </p>
               </div>
 
               <div className="detail-box rose">
-                <p className="detail-title">Uso ideal</p>
+                <p className="detail-title">Sobre mim</p>
                 <p>
-                  Perfeita para enviar por link no WhatsApp ou junto com o
-                  convite digital.
+                  Aprendi a falar lua, acho a lua linda e adoro olhar para ela. 
+                  Ela é minha amiga brilhante no céu!
                 </p>
               </div>
             </div>
