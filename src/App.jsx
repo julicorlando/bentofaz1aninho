@@ -1,9 +1,27 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import "./index.css";
 
 const sunRays = [0, 18, 40, 62, 85, 110, 135, 158, 182, 205, 228, 250, 275, 298, 320, 340];
 
 export default function App() {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const tentarTocar = async () => {
+      if (audioRef.current) {
+        try {
+          audioRef.current.volume = 0.35;
+          await audioRef.current.play();
+        } catch (error) {
+          console.log("Autoplay bloqueado pelo navegador:", error);
+        }
+      }
+    };
+
+    tentarTocar();
+  }, []);
+
   function enviarWhatsApp(e) {
     e.preventDefault();
 
@@ -11,8 +29,6 @@ export default function App() {
 
     const nome = form.get("nome");
     const telefone = form.get("telefone");
-    const adultos = form.get("adultos");
-    const criancas = form.get("criancas");
     const presenca = form.get("presenca");
     const mensagem = form.get("mensagem");
     const responsavel = form.get("responsavel");
@@ -24,8 +40,6 @@ export default function App() {
 
 Nome: ${nome}
 Telefone: ${telefone}
-Adultos: ${adultos}
-Crianças: ${criancas}
 Presença: ${presenca}
 Mensagem: ${mensagem || "-"}`;
 
@@ -35,8 +49,22 @@ Mensagem: ${mensagem || "-"}`;
     );
   }
 
+  function tocarMusicaManual() {
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.log("Não foi possível tocar o áudio:", error);
+      });
+    }
+  }
+
   return (
     <div className="page">
+      {/* player oculto */}
+      <audio ref={audioRef} autoPlay loop hidden>
+        <source src="/musica.mp3" type="audio/mpeg" />
+        Seu navegador não suporta áudio.
+      </audio>
+
       <section className="hero">
         <div className="decor-layer">
           <motion.div
@@ -135,6 +163,14 @@ Mensagem: ${mensagem || "-"}`;
                 <strong>Espaço Rire</strong>
               </div>
             </div>
+
+            <button
+              type="button"
+              className="music-button"
+              onClick={tocarMusicaManual}
+            >
+              ▶️ Tocar música
+            </button>
           </div>
 
           <div className="hero-right">
@@ -169,28 +205,6 @@ Mensagem: ${mensagem || "-"}`;
                     />
                   </label>
                 </div>
-
-                {/* <div className="form-grid">
-                  <label>
-                    <span>Quantidade de adultos</span>
-                    <select name="adultos" defaultValue="1">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    <span>Quantidade de crianças</span>
-                    <select name="criancas" defaultValue="0">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3+">3+</option>
-                    </select>
-                  </label>
-                </div>*/}
 
                 <label>
                   <span>Você vai comparecer?</span>
