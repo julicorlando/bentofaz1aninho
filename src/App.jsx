@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import "./index.css";
 
@@ -248,6 +248,7 @@ Mensagem: ${mensagem || "-"}`;
                 <button type="submit" className="primary-button">
                   Confirmar via WhatsApp
                 </button>
+                <strong><small style={{ color: "#fa0808" }}>*Convidado não convida!</small></strong>
               </form>
             </motion.div>
           </div>
